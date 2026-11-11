@@ -1,0 +1,24 @@
+# Fluent Bit как DaemonSet: читает логи контейнеров приложения и пишет в stdout
+# (чарт fluent/fluent-bit)
+resources:
+  requests:
+    cpu: 20m
+    memory: 32Mi
+  limits:
+    memory: 96Mi
+
+config:
+  inputs: |
+    [INPUT]
+        Name              tail
+        Path              /var/log/containers/*_staging_*.log,/var/log/containers/*_production_*.log
+        multiline.parser  docker, cri
+        Tag               kube.*
+        Mem_Buf_Limit     5MB
+        Skip_Long_Lines   On
+
+  outputs: |
+    [OUTPUT]
+        Name    stdout
+        Match   kube.*
+        Format  json_lines
