@@ -15,3 +15,6 @@ patches:
       - op: replace
         path: /spec/rules/0/host
         value: staging.skillbox.local
+images:
+  - name: skillbox-app
+    newTag: v2

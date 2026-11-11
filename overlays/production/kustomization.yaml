@@ -6,7 +6,7 @@ resources:
   - ../../base
 replicas:
   - name: skillbox-app
-    count: 3
+    count: 4
 patches:
   - target:
       kind: Ingress
