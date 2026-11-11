@@ -34,4 +34,5 @@ kubectl apply -k overlays/production
 - `base/`: общие манифесты (Deployment, Service, Ingress)
 - `overlays/staging`, `overlays/production`: различия окружений (namespace, число реплик, адрес)
 - `monitoring/`: настройки Prometheus и Grafana (Helm)
+- `logging/`: настройки сбора логов (Fluent Bit)
 - `notes/`: заметки о том, что сломалось и как починил
