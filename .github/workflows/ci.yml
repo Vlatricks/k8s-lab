@@ -35,7 +35,7 @@ jobs:
       - name: Deploy staging (stand-in image)
         run: |
           kubectl kustomize overlays/staging \
-            | sed 's#image: skillbox-app:local#image: nginxinc/nginx-unprivileged:1.27-alpine#' \
+            | sed -E 's#image: skillbox-app:.*#image: nginxinc/nginx-unprivileged:1.27-alpine#' \
             | kubectl apply -f -
 
       - name: Wait for rollout
@@ -46,3 +46,10 @@ jobs:
           kubectl port-forward -n staging svc/skillbox-app 8080:80 &
           sleep 5
           curl -fsS http://localhost:8080/ > /dev/null
+
+      - name: Debug on failure
+        if: failure()
+        run: |
+          kubectl get pods -n staging -o wide
+          kubectl describe pods -n staging
+          kubectl get events -n staging --sort-by=.lastTimestamp
