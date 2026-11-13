@@ -1,5 +1,7 @@
 # k8s-lab
 
+![CI](https://github.com/Vlatricks/k8s-lab/actions/workflows/ci.yml/badge.svg)
+
 Практическое изучение Kubernetes: переношу приложение из проекта DevOps (деплой на ВМ через Ansible) в Kubernetes и шаг за шагом довожу до платформы с мониторингом, логами и CI/CD.
 
 ## План
@@ -9,9 +11,10 @@
 - [x] 3. Namespaces `staging` и `production`, Ingress
 - [x] 4. Различия окружений через Kustomize
 - [x] 5. Rolling update и откат
-- [ ] 6. Мониторинг (kube-prometheus-stack) и логи (Fluent Bit)
-- [ ] 7. CI/CD: деплой в кластер из пайплайна, GitOps
-- [ ] 8. k3s на ВМ через Ansible
+- [x] 6. Мониторинг (Prometheus) и логи (Fluent Bit, вывод в stdout)
+- [x] 7. CI: проверка манифестов и smoke-test в kind (GitHub Actions)
+- [ ] 8. GitOps (Argo CD), по желанию
+- [ ] 9. k3s на ВМ через Ansible
 
 ## Быстрый старт
 
@@ -35,4 +38,5 @@ kubectl apply -k overlays/production
 - `overlays/staging`, `overlays/production`: различия окружений (namespace, число реплик, адрес)
 - `monitoring/`: настройки Prometheus и Grafana (Helm)
 - `logging/`: настройки сбора логов (Fluent Bit)
+- `.github/workflows/`: CI (проверка манифестов и smoke-test в kind)
 - `notes/`: заметки о том, что сломалось и как починил
