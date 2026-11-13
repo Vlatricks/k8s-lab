@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/Vlatricks/k8s-lab/actions/workflows/ci.yml/badge.svg)
 
-Практическое изучение Kubernetes: переношу приложение из проекта DevOps (деплой на ВМ через Ansible) в Kubernetes и шаг за шагом довожу до платформы с мониторингом, логами и CI/CD.
+Переношу приложение из проекта DevOps (деплой на ВМ через Ansible) в Kubernetes и шаг за шагом довожу до платформы с мониторингом, логами и CI/CD.
 
 ## План
 
